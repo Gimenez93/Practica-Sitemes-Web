@@ -1,0 +1,22 @@
+<html>
+<head>
+	<title>Referees</title>
+</head>
+<body>
+	<h1>Tots els arbitres</h1>
+	{% if referee %}
+	<ul>
+	{% for ref in referee %}
+	<li>
+	<a href = /referees/{{ref.name}}>{{ref.name}} </a> </br></br>
+	{% for match in ref.matches.all %}
+	{{match}} </br></br>
+	{% endfor %}
+	</li>
+	{% endfor %}
+	</ul>
+	{% else %}
+	<p>No ha escrit comentaris.</p>
+	{% endif %}
+</body>
+</html>
