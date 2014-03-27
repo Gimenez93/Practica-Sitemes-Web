@@ -9,7 +9,7 @@
 	<ul>
 	{% for comment in comments %}
 	<li>
-	<a href=/user/{{comment.user.username}}>{{comment.user}}</a>: {{comment}}
+	<a href=/user/{{comment.user.name}}>{{comment.user}}</a>: {{comment}}
 	</li>
 	{% endfor %}
 	</ul>	

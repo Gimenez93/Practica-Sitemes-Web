@@ -6,19 +6,16 @@
 <body>
 	<ul>
 	<li>
-	name: {{name}}
+	age: {{age}}
 	</li>
 	<li>
-	coach: {{coach}}
+	role: {{role}}
 	</li>
 	<li>
-	city: {{city}}
-	</li>
-	<li>
-	year fundation: {{year}}
+	team: {{team}}
 	</li>
 	</ul>
 	</br></br>
-	<a href = /teams/>go back </a> 
+	<a href = /matches/>go back </a> 
 </body>
 </html>

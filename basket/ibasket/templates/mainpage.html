@@ -6,5 +6,23 @@
 	<h1> {{pagetitle}} </h1>
 	
 	<p> {{contentbody}} </p>
+
+	</br>
+	{% if user.username %}
+
+	<p> Bevingut {{user.username}}!
+	</br></br>
+	<a href = /referees/>referees </a> </br>
+	<a href = /players/>players </a> </br>
+	<a href = /teams/>teams </a> </br>
+	<a href = /matches/>matches </a> </br>
+
+	{% else %}
+
+	<p> Com? Que no estas loguejat? Doncs pots fer-ho <a href =/login>aqui</a>
+
+	<p> No estas registrat? <a href =/register>Fes-ho ara!</a>
+
+	{% endif %}
 </body>
 </html>

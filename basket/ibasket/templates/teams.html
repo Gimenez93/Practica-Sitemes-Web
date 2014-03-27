@@ -1,22 +1,21 @@
 <html>
 <head>
-	<title>Referees</title>
+	<title>Teams</title>
 </head>
 <body>
-	<h1>Tots els arbitres</h1>
-	{% if referee %}
+	<h1>Tots els equips</h1>
+	{% if teams %}
 	<ul>
-	{% for ref in referee %}
+	{% for team in teams %}
 	<li>
-	<a href = /referees/{{ref.name}}/>{{ref.name}} </a> </br></br>
-	{% for match in ref.matches.all %}
-	{{match}} </br></br>
-	{% endfor %}
+	<a href = /teams/{{team.id}}/>{{team.name}} </a> </br></br>
 	</li>
 	{% endfor %}
 	</ul>
 	{% else %}
-	<p>No ha escrit comentaris.</p>
+	<p>No hi han equips al sistema.</p>
 	{% endif %}
+	</br></br>
+	<a href = />go back </a> 
 </body>
 </html>

@@ -8,7 +8,7 @@
 	<ul>
 	{% for comment in comments %}
 	<li>
-	({{comment.match.localTeam}} - {{comment.match.visitantTeam}}) : {{comment.comment}}
+	({{comment.match.localTeam.name}} - {{comment.match.visitantTeam.name}}) : {{comment.comment}}
 	</li>
 	{% endfor %}
 	</ul>

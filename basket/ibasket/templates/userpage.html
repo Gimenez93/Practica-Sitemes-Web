@@ -8,6 +8,7 @@
 	<ul>
 	{% for comment in comments %}
 	<li>
+	{% if c
 	({{comment.match.localTeam.name}} - {{comment.match.visitantTeam.name}}) : {{comment.comment}}
 	</li>
 	{% endfor %}
@@ -15,5 +16,6 @@
 	{% else %}
 	<p>No ha escrit comentaris.</p>
 	{% endif %}
+	<a href = /matches/>Torna a la llista de partits </a> 
 </body>
 </html>

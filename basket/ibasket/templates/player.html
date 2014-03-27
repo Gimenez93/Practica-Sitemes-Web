@@ -1,14 +1,21 @@
 <html>
 <head>
-	<title>{{name}} </title>
+	<title>{{name}}</title>
 	<p>{{name}}</p>
 </head>
 <body>
-	{% for match in matches %}
+	<ul>
 	<li>
-	{{match}}
+	age: {{age}}
 	</li>
-	{% endfor %}
+	<li>
+	role: {{role}}
+	</li>
+	<li>
+	team: {{team}}
+	</li>
 	</ul>
+	</br></br>
+	<a href = /players/>go back </a> 
 </body>
 </html>

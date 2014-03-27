@@ -4,19 +4,17 @@
 </head>
 <body>
 	<h1>Tots els arbitres</h1>
-	{% if referee %}
+	{% if referees %}
 	<ul>
-	{% for ref in referee %}
+	{% for ref in referees %}
 	<li>
-	<a href = /referees/{{ref.name}}/>{{ref.name}} </a> </br></br>
-	{% for match in ref.matches.all %}
-	{{match}} </br></br>
-	{% endfor %}
+	<a href = /referees/{{ref.id}}/>{{ref.name}} </a> </br></br>
 	</li>
 	{% endfor %}
 	</ul>
 	{% else %}
-	<p>No ha escrit comentaris.</p>
+	<p>No hi han arbitres al sistema.</p>
 	{% endif %}
+	<a href = />go back </a> 
 </body>
 </html>

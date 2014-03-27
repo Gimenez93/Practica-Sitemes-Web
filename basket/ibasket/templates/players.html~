@@ -16,6 +16,6 @@
 	<p>No hi han jugadors al sistema.</p>
 	{% endif %}
 	</br></br>
-	<a href = / >go back </a> 
+	<a href = />go back </a> 
 </body>
 </html>

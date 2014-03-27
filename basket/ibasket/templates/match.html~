@@ -6,7 +6,6 @@
 <body>
 	<p> puntuacio: {{localpoints}} - {{visitantpoints}}</p>
 	</br>
-	<a href = /comments/{{id}}> tots els comentaris d'aquest partit </a>
 
 	</br></br>
 	<a href = /matches/>go back </a> 

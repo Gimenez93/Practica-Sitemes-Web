@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>{{name}} mactetis</title>
+	<title>{{name}}</title>
 	<p>{{name}}</p>
 </head>
 <body>
@@ -10,5 +10,7 @@
 	</li>
 	{% endfor %}
 	</ul>
+	</br></br>
+	<a href = /referees/>go back </a> 
 </body>
 </html>
