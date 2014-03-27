@@ -4,8 +4,8 @@ from django.shortcuts import render_to_response, render
 from django.template import Context
 from django.template.loader import get_template
 from django.contrib.auth.models import User
-from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.core import serializers
 from ibasket.models import *
 
 
@@ -16,7 +16,7 @@ def mainpage(request):
 		{
 			'titlehead': 'Basket aPP',
 			'pagetitle': 'Welcome to the Basket aPPlication',
-			'contentbody': 'Managing non legal funding since 2013',
+			'contentbody': 'The best aPP for consult your favourite sport, basket!',
 			'user': request.user
 		})
 			
@@ -25,21 +25,52 @@ def mainpage(request):
 
 def userpage(request,username):
 	try:
-		user = User.objects.get(username=username)
+		user = User.objects.get(id=username)
 	except:
 		raise Http404('User not found.')
+
+	if request.META["QUERY_STRING"] == "xml":
+		data = serializers.serialize("xml", User.objects.filter(id=username))
+		return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "json":
+		data = serializers.serialize("json", User.objects.filter(id=username))
+		return HttpResponse(data, mimetype='application/json')
+
 	return render_to_response(
 		'userpage.html',
 		{
-			'username': username,
-			'comments': user.comment_set.all()
+			'username': user.username,
+			'comments': user.comment_set.all(),
+			'user': request.user,
 		})
 
+def users(request):
+	if request.META["QUERY_STRING"] == "xml":
+		data = serializers.serialize("xml", User.objects.all())
+		return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "json":
+		data = serializers.serialize("json", User.objects.all())
+		return HttpResponse(data, mimetype='application/json')
+	return render_to_response(
+		'users.html',
+		{
+			'users': User.objects.all(),
+			'user': request.user,
+		})
+
+
 def referee(request):
+	if request.META["QUERY_STRING"] == "xml":
+		data = serializers.serialize("xml", Referee.objects.all())
+		return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "json":
+		data = serializers.serialize("json", Referee.objects.all())
+		return HttpResponse(data, mimetype='application/json')
 	return render_to_response(
 		'referees.html',
 		{
-			'referees': Referee.objects.all()
+			'referees': Referee.objects.all(),
+			'user': request.user
 		})
 
 def referees(request, ref):
@@ -48,21 +79,33 @@ def referees(request, ref):
 	except:
 		raise Http404('Referee not found.')
 
+	if request.META["QUERY_STRING"] == "xml":
+		data = serializers.serialize("xml", Referee.objects.filter(id=ref))
+		return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "json":
+		data = serializers.serialize("json", Referee.objects.filter(id=ref))
+		return HttpResponse(data, mimetype='application/json')
+
 	return render_to_response(
 		'referee.html',
 		{
 			'name': referee.name,
-			'matches': referee.matches.all
+			'matches': referee.matches.all,
+			'user': request.user,
 		})
 
 def players(request):
-	#if(HttpRequest.META["QUERY_STRING"] == "xml"):
-	#	data = serializers.serialize('xml', Players.objects.all())
-	#	return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "xml":
+		data = serializers.serialize("xml", Player.objects.all())
+		return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "json":
+		data = serializers.serialize("json", Player.objects.all())
+		return HttpResponse(data, mimetype='application/json')
 	return render_to_response(
 		'players.html',
 		 {
-			'players': Player.objects.all()
+			'players': Player.objects.all(),
+			'user': request.user,
 		})
 
 
@@ -71,6 +114,12 @@ def player(request, ref):
 		player = Player.objects.get(id=ref)
 	except:
 		raise Http404('Player not found.')
+	if request.META["QUERY_STRING"] == "xml":
+		data = serializers.serialize("xml", Player.objects.filter(id=ref))
+		return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "json":
+		data = serializers.serialize("json", Player.objects.filter(id=ref))
+		return HttpResponse(data, mimetype='application/json')
 
 	return render_to_response(
 		'player.html',
@@ -78,14 +127,22 @@ def player(request, ref):
 			'name': player.name,
 			'age': player.age,
 			'role': player.role,
-			'team': player.team.name
+			'team': player.team.name,
+			'user': request.user,
 		})
 
 def teams(request):
+	if request.META["QUERY_STRING"] == "xml":
+		data = serializers.serialize("xml", Team.objects.all())
+		return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "json":
+		data = serializers.serialize("json", Team.objects.all())
+		return HttpResponse(data, mimetype='application/json')
 	return render_to_response(
 		'teams.html',
 		 {
-			'teams': Team.objects.all()
+			'teams': Team.objects.all(),
+			'user': request.user,
 		})
 
 def team(request, ref):
@@ -93,6 +150,12 @@ def team(request, ref):
 		team = Team.objects.get(id=ref)
 	except:
 		raise Http404('Team not found.')
+	if request.META["QUERY_STRING"] == "xml":
+		data = serializers.serialize("xml", teamIterable)
+		return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "json":
+		data = serializers.serialize("json", teamIterable)
+		return HttpResponse(data, mimetype='application/json')
 
 	return render_to_response(
 		'team.html',
@@ -100,21 +163,36 @@ def team(request, ref):
 			'name': team.name,
 			'year': team.year_fundation,
 			'city': team.city,
-			'coach': team.coach
+			'coach': team.coach,
+			'user': request.user,
 		})
 
 def matches(request):
+	if request.META["QUERY_STRING"] == "xml":
+		data = serializers.serialize("xml", Match.objects.all())
+		return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "json":
+		data = serializers.serialize("json", Match.objects.all())
+		return HttpResponse(data, mimetype='application/json')
 	return render_to_response(
 		'matches.html',
 		 {
-			'matches': Match.objects.all()
+			'matches': Match.objects.all(),
+			'user': request.user,
 		})
 
 def match(request, ref):
 	try:
 		match = Match.objects.get(id=ref)
+	
 	except:
 		raise Http404('Match not found')
+	if request.META["QUERY_STRING"] == "xml":
+		data = serializers.serialize("xml", Match.objects.filter(id=ref))
+		return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "json":
+		data = serializers.serialize("json", Match.objects.filter(id=ref))
+		return HttpResponse(data, mimetype='application/json')
 
 	return render_to_response(
 		'match.html',
@@ -124,13 +202,23 @@ def match(request, ref):
 			'visitantpoints': match.visitantScore,
 			'localpoints': match.localScore,
 			'id' : match.id,
+			'user': request.user,
 		})
 
 def comments(request, mat):
+	if request.META["QUERY_STRING"] == "xml":
+		data = serializers.serialize("xml", Comment.objects.all())
+		return HttpResponse(data, mimetype='application/xml')
+	if request.META["QUERY_STRING"] == "json":
+		data = serializers.serialize("json", Comment.objects.all())
+		return HttpResponse(data, mimetype='application/json')
 	return render_to_response(
 		'comments.html',
 		{
 			'comments' : Comment.objects.filter(match=mat),
+			'match' : Match.objects.get(id=mat),
+			'user': request.user,
+			'id': mat
 		})
 
 

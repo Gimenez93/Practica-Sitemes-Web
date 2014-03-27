@@ -3,12 +3,13 @@
 	<title>Matches</title>
 </head>
 <body>
-	<h1>Tots els partits</h1>
+	<h1>Llista de tots els partits</h1>
 	{% if matches %}
+	<p> Clica en un dels partits si vols mes informació sobre ell</p> 
 	<ul>
 	{% for match in matches %}
 	<li>
-	<a href = /matches/{{match.id}}/>{{local}} - {{visitant}} </a> </br></br>
+	<a href = /matches/{{match.id}}/>{{match.localTeam}} - {{match.visitantTeam}} </a> </br></br>
 	</li>
 	{% endfor %}
 	</ul>
@@ -16,6 +17,6 @@
 	<p>No hi han partits al sistema.</p>
 	{% endif %}
 	</br></br>
-	<a href = />go back </a> 
+	<a href = />Torna al menu principal </a> 
 </body>
 </html>

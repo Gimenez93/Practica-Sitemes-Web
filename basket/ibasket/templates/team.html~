@@ -1,24 +1,24 @@
 <html>
 <head>
 	<title>{{name}}</title>
-	<p>{{name}}</p>
 </head>
 <body>
+	<h4> Aqui es troba tota l'informacio que dispossem sobre l'equip {{name}}</h4>
 	<ul>
 	<li>
-	name: {{name}}
+	Nom del equip: {{name}}
 	</li>
 	<li>
-	coach: {{coach}}
+	Entrenador: {{coach}}
 	</li>
 	<li>
-	city: {{city}}
+	Ciutat de fundació: {{city}}
 	</li>
 	<li>
-	year fundation: {{year fundation}}
+	Any de fundació: {{year}}
 	</li>
 	</ul>
 	</br></br>
-	<a href = /teams/>go back </a> 
+	<a href = /teams/>Torna a la llista d'equips </a> 
 </body>
 </html>

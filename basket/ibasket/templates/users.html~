@@ -1,21 +1,21 @@
 <html>
 <head>
-	<title>Referees</title>
+	<title>Users</title>
 </head>
 <body>
 	{% if user.username %}
-	<h1>Llista de tots els arbitres</h1>
-	{% if referees %}
-	<p> Clica en un dels arbitres si vols mes informació sobre ell</p> 
+	<h1>Llista de tots els usuaris</h1>
+	{% if users %}
+	<p> Clica en un dels usuaris si vols mes informació sobre ell</p> 
 	<ul>
-	{% for ref in referees %}
+	{% for usuari in users %}
 	<li>
-	<a href = /referees/{{ref.id}}/>{{ref.name}} </a> </br></br>
+	<a href = /users/{{usuari.username}}/>{{usuari.username}} </a> </br></br>
 	</li>
 	{% endfor %}
 	</ul>
 	{% else %}
-	<p>No existeixen arbitres al sistema.</p>
+	<p>No existeixen usuaris al sistema.</p>
 	{% endif %}
 	<a href = />Torna al menu principal </a>
 	{% else %}

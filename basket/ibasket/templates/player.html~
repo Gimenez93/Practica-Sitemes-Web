@@ -1,21 +1,26 @@
 <html>
 <head>
 	<title>{{name}}</title>
-	<p>{{name}}</p>
 </head>
 <body>
+	{% if user.username %}
+	<p> Aqui es troba tota l'informacio que dispossem sobre el jugador {{name}}</p>
 	<ul>
 	<li>
-	age: {{age}}
+	Edat: {{age}}
 	</li>
 	<li>
-	role: {{role}}
+	Posició: {{role}}
 	</li>
 	<li>
-	team: {{team}}
+	Equip en el que juga actualment:{{team}}
 	</li>
 	</ul>
 	</br></br>
-	<a href = /matches/>go back </a> 
+	<p> Si vols mes informació sobre l'equip on juga consulta la llista d'equips</p>
+	<a href = /players/>Torna a la llista de jugadors </a> 
+	{% else %}
+	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
+	{% endif %}
 </body>
 </html>

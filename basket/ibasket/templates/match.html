@@ -1,14 +1,20 @@
 <html>
 <head>
 	<title>{{local}} - {{visitant}}</title>
-	<p>{{local}} - {{visitant}}</p>
+	
 </head>
 <body>
-	<p> puntuacio: {{localpoints}} - {{visitantpoints}}</p>
+	{% if user.username %}	
+	<p>Aqui es troba tota l'informació que disposem sobre el partit {{local}} - {{visitant}}</p>
+	<p> Puntuació final: {{localpoints}} - {{visitantpoints}}</p>
 	</br>
-	<a href = /comments/{{id}}> tots els comentaris d'aquest partit </a>
+	<a href = /comments/{{id}}> Clica aqui si vols llegir tots els comentaris d'aquest partit </a>
 
 	</br></br>
-	<a href = /matches/>go back </a> 
+	<p> Si vols mes informació sobre els equips que el van jugar consulta la llista d'equips</p>
+	<a href = /matches/>Torna a la llista de partits </a> 
+	{% else %}
+	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
+	{% endif %}
 </body>
 </html>

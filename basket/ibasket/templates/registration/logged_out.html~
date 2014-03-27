@@ -1,0 +1,9 @@
+<html>
+	<head>
+	<title>The Basket App - Log out</title>
+	</head>
+<body>
+	<p>Acabes de sortir de la teva sessió.</p>
+	<p> Clica tornar al <a href =/> aquí </a> per tornar al menu principal </p>
+</body>
+</html>

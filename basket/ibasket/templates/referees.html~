@@ -3,8 +3,10 @@
 	<title>Referees</title>
 </head>
 <body>
-	<h1>Tots els arbitres</h1>
+	{% if user.username %}
+	<h1>Llista de tots els arbitres</h1>
 	{% if referees %}
+	<p> Clica en un dels arbitres si vols mes informació sobre ell</p> 
 	<ul>
 	{% for ref in referees %}
 	<li>
@@ -13,7 +15,11 @@
 	{% endfor %}
 	</ul>
 	{% else %}
-	<p>No hi han arbitres al sistema.</p>
+	<p>No existeixen arbitres al sistema.</p>
+	{% endif %}
+	<a href = />Torna al menu principal </a>
+	{% else %}
+	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a></p>
 	{% endif %}
 </body>
 </html>

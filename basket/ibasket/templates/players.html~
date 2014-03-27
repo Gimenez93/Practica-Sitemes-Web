@@ -3,8 +3,9 @@
 	<title>Players</title>
 </head>
 <body>
-	<h1>Tots els jugadors</h1>
+	<h1>Llista de tots els jugadors</h1>
 	{% if players %}
+	<p> Clica en un dels jugadors si vols mes informació sobre ell</p> 
 	<ul>
 	{% for player in players %}
 	<li>
@@ -16,6 +17,6 @@
 	<p>No hi han jugadors al sistema.</p>
 	{% endif %}
 	</br></br>
-	<a href = />go back </a> 
+	<a href = / >Torna al menu principal </a> 
 </body>
 </html>

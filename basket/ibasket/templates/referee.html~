@@ -1,16 +1,19 @@
 <html>
 <head>
 	<title>{{name}}</title>
-	<p>{{name}}</p>
 </head>
 <body>
+	<h4> Aqui es troba tota l'informacio que dispossem sobre l'arbitre {{name}}</h4>
+	<p> Partits que ha arbitrat: </p>
+	<ul>
 	{% for match in matches %}
 	<li>
 	{{match}}
 	</li>
 	{% endfor %}
 	</ul>
+	<p> Si vols mes informació sobre algun dels partits consulta la llista de partits</p>
 	</br></br>
-	<a href = /referees/>go back </a> 
+	<a href = /referees/>Torna a la llista de arbitres </a> 
 </body>
 </html>

@@ -10,19 +10,21 @@
 	</br>
 	{% if user.username %}
 
-	<p> Bevingut {{user.username}}!
+	<p> Bevingut {{user.username}}!</p>
 	</br></br>
-	<a href = /referees/>referees </a> </br>
-	<a href = /players/>players </a> </br>
-	<a href = /teams/>teams </a> </br>
-	<a href = /matches/>matches </a> </br>
-	<a href = /comments/>comments </a> </br>
+	<p> Aqui pots consultar tota la informació que ara mateix tenim disponible a la nostra base de dades!</p>
+	<a href = /referees/>Llista de tots els arbitres </a> </br>
+	<a href = /players/>Llista de tots els jugadors </a> </br>
+	<a href = /teams/>Llista de tots els equips </a> </br>
+	<a href = /matches/>Llista de tots els partits </a> </br>
+
+	<p> Vols sortir del teu compte? Doncs apa, <a href =/logout>adeu!</a>
 
 	{% else %}
 
 	<p> Com? Que no estas loguejat? Doncs pots fer-ho <a href =/login>aqui</a>
 
-	<p> No estas registrat? <a href =/register>Fes-ho ara!</a>
+	<p> No estas registrat? <a href =/register>	<input type="hidden" name="next" value="/" />Fes-ho ara!</a>
 
 	{% endif %}
 </body>

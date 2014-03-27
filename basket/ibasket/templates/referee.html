@@ -1,9 +1,11 @@
 <html>
 <head>
 	<title>{{name}}</title>
-	<p>{{name}}</p>
 </head>
 <body>
+	{% if user.username %}
+	<h4> Aqui es troba tota l'informacio que dispossem sobre l'arbitre {{name}}</h4>
+	<p> Partits que ha arbitrat: </p>
 	<ul>
 	{% for match in matches %}
 	<li>
@@ -11,7 +13,11 @@
 	</li>
 	{% endfor %}
 	</ul>
+	<p> Si vols mes informació sobre algun dels partits consulta la llista de partits</p>
 	</br></br>
-	<a href = /referees/>go back </a> 
+	<a href = /referees/>Torna a la llista de arbitres </a> 
+	{% else %}
+	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
+	{% endif %}
 </body>
 </html>

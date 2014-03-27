@@ -3,20 +3,23 @@
 	<title>Comments</title>
 </head>
 <body>
-
-	{% if comments %}	
-	<h1>Tots els commentaris d'aquest partit</h1>
+	{% if user.username %}
+	<h1>Tots els commentaris del partit {{match}}</h1>
+	{% if comments %}
 	<ul>
 	{% for comment in comments %}
 	<li>
-	<a href=/user/{{comment.user.username}}>{{comment.user}}</a>: {{comment}}
+	{{comment}} - per {{comment.user}}
 	</li>
 	{% endfor %}
 	</ul>	
 	{% else %}
-	<p>No hi han partits al sistema.</p>
+	<p>No hi han commentaris per aquest partit</p>
 	{% endif %}
 	</br></br>
-	<a href = /matches/>Torna a la llista de partits </a> 
+	<a href = /matches/{{id}}>Torna al partit </a> 
+	{% else %}
+	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
+	{% endif %}
 </body>
 </html>
