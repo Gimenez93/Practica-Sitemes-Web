@@ -1,0 +1,19 @@
+<html> 
+	<head>
+	<title> Create {{idComment}} i {{idMatch}} </title>
+	</head>
+<body>
+
+	<h1> Edit a comment </h1>
+
+	<form action = "" method = "post"> {% csrf_token %}
+
+		<input type = "text" name = "comment" value = " {{comment.comment}}" onfocus="if(this.value=='{{comment.comment}}')this.value=''">
+		<input type = "submit" value = "Edit the comment">
+	</form>
+
+
+	<p> M'he equivocat, deixa'm tornar al <a href =/> menu principal </a> o als comentaris de <a href =/matches/{{id}}> aquest partit</a> </p>
+
+</body>
+</html>

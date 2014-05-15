@@ -41,3 +41,10 @@ class Comment(models.Model):
 		return self.comment
 	
 	
+class Prova(models.Model):
+	name = models.TextField(max_length = 100)
+	lastname = models.TextField(max_length = 100)
+	def __unicode__ (self):
+		return self.name + " - " + self.lastname
+
+

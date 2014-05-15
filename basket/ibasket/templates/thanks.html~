@@ -1,0 +1,10 @@
+<html>
+<head>
+	<title>Comentari fet</title>
+	
+</head>
+<body>
+	<h1> Comentari fet, gracies</h1>
+	<p> Clica <a href=/matches/{{id}}>aqui</a> per tornar al partit</p>
+</body>
+</html>

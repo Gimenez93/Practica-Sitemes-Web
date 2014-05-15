@@ -34,12 +34,17 @@ urlpatterns = patterns('',
     url(r'^teams/(\w+)/$', team),
     url(r'^teams/$', teams),
 
+    url(r'^matches/(?P<match>\w)/(?P<idComment>\w+)/edit/$', edit),
+    url(r'^matches/(?P<match>\w)/(?P<idComment>\w+)/delete/$', delete),
+    url(r'^matches/(\w+)/create/$', create),
     url(r'^matches/(\w+)/$', match),
     url(r'^matches/$', matches),
 
 
     url(r'^comments/(\w+)/$', comments),
 
+
+    url(r'^prova/$', prova),
 
 
 

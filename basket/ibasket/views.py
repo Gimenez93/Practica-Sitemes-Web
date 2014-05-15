@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core import serializers
 from ibasket.models import *
+from ibasket.forms import *
 
 
 
@@ -235,3 +236,52 @@ def register(request):
 		})
 
 
+def prova(request):
+	if request.method == 'POST':
+		form = Prova(name=request.POST['name'],lastname=request.POST['lastname'],)
+		new_prova = form.save()
+		return HttpResponseRedirect("/")
+	else:
+		form = ProvaForm(request.POST)
+	return render(request, "prova.html", {
+		'form': form,
+		})
+
+def create(request,username):
+	if request.method == 'POST':
+		form = Comment(comment=request.POST['comment'], user=request.user, match=Match.objects.get(id=username))
+		new_prova = form.save()
+		return render(request, "thanks.html", {
+		'id' : username,
+		})
+	else:
+		form = ProvaForm(request.POST)
+	return render(request, "create.html", {
+		'form': form,
+		'id' : username
+		})
+
+def edit(request,match,idComment):
+	if request.method == 'POST':
+		form = Comment.objects.get(id=idComment)
+		form.comment = request.POST['comment']
+		new_prova = form.save()
+		return render(request, "thanks.html", {
+		'id' : match,
+		})
+	else:
+		comment = Comment.objects.get(id=idComment)
+		form = ProvaForm(request.POST,comment)
+	return render(request, "edit.html", {
+		'form': form,
+		'idComment' : idComment,
+		'idMatch' : match,
+		'comment' : comment,
+		})
+
+def delete(request,match,idComment):
+	form = Comment.objects.get(id=idComment)
+	form.delete()
+	return render(request, "thanks.html", {
+	'id' : match,
+	})

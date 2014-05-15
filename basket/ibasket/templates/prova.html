@@ -1,0 +1,19 @@
+<html> 
+	<head>
+	<title> Create comment </title>
+	</head>
+<body>
+
+
+	<h1> Create a prova </h1>
+
+	<form action = "" method = "post"> {% csrf_token %}
+		{{ form.jordi }} 
+		<input type = "text" name = "name" value = "Aqui pots ficar el nom" onfocus="if(this.value=='Aqui pots ficar el nom')this.value=''">
+		<input type = "text" name = "lastname" value ="Aqui pots ficar el cognom" onfocus="if(this.value=='Aqui pots ficar el cognom')this.value=''">
+		<input type = "submit" value = "Create the comment">
+	</form>
+
+	<p> M'he equivocat, deixa'm tornar al <a href =/> menu principal </a></p>
+</body>
+</html>
