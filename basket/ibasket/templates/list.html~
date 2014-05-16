@@ -1,0 +1,14 @@
+<html>
+<head>
+	<title>Matches</title>
+</head>
+<body>
+	{% if user.username %}
+	{% for match in object_list %}
+		<li> Nom: {{match.city}}</li>
+	{% endfor %}
+	{% else %}
+	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
+	{% endif %}
+</body>
+</html>

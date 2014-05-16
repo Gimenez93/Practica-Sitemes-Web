@@ -1,19 +1,19 @@
 <html>
 <head>
-	<title>{{name}}</title>
+	<title>{{object.name}}</title>
 </head>
 <body>
 	{% if user.username %}
 	<p> Aqui es troba tota l'informacio que dispossem sobre el jugador {{name}}</p>
 	<ul>
 	<li>
-	Edat: {{age}}
+	Edat: {{object.age}}
 	</li>
 	<li>
-	Posició: {{role}}
+	Posició: {{object.role}}
 	</li>
 	<li>
-	Equip en el que juga actualment: {{team}}
+	Equip en el que juga actualment: {{object.team}}
 	</li>
 	</ul>
 	</br></br>

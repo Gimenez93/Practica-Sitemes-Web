@@ -9,7 +9,12 @@
 	<ul>
 	{% for comment in comments %}
 	<li>
-	{{comment}} - per {{comment.user}} <a href=/matches/{{id}}/{{comment.pk}}/edit>edit</a> <a href=/matches/{{id}}/{{comment.pk}}/delete> delete</a>
+	{{comment}} - per {{comment.user}} 
+	{% if user == comment.user %}
+	<a href=/matches/{{id}}/{{comment.pk}}/edit>edit</a> 
+	
+	<a href=/matches/{{id}}/{{comment.pk}}/delete> delete</a>
+	{% endif %}
 	</li>
 	{% endfor %}
 	</ul>	

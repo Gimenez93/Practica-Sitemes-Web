@@ -5,10 +5,10 @@
 <body>
 	{% if user.username %}
 	<h1>Llista de tots els arbitres</h1>
-	{% if referees %}
+	{% if object_list %}
 	<p> Clica en un dels arbitres si vols mes informació sobre ell</p> 
 	<ul>
-	{% for ref in referees %}
+	{% for ref in object_list %}
 	<li>
 	<a href = /referees/{{ref.id}}/>{{ref.name}} </a> </br></br>
 	</li>

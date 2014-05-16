@@ -5,10 +5,10 @@
 <body>
 	{% if user.username %}
 	<h1>Llista de tots els partits</h1>
-	{% if matches %}
+	{% if object_list %}
 	<p> Clica en un dels partits si vols mes informació sobre ell</p> 
 	<ul>
-	{% for match in matches %}
+	{% for match in object_list %}
 	<li>
 	<a href = /matches/{{match.id}}/>{{match.localTeam}} - {{match.visitantTeam}} </a> </br></br>
 	</li>

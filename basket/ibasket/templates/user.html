@@ -4,10 +4,11 @@
 </head>
 <body>
 	{% if user.username %}
-	<h1>Comentaris escrits per l'usuari {{ username }}</h1>
-	{% if comments %}
+	<h1>Comentaris escrits per l'usuari {{ object.username }}</h1>
+	COMMENTS {{object}}
+	{% if objects_list.comments %}
 	<ul>
-	{% for comment in comments %}
+	{% for comment in object.comments.all %}
 	<li>
 
 	({{comment.match.localTeam.name}} - {{comment.match.visitantTeam.name}}) : {{comment.comment}}

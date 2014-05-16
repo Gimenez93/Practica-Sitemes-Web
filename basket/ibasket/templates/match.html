@@ -1,12 +1,12 @@
 <html>
 <head>
-	<title>{{local}} - {{visitant}}</title>
+	<title>{{object.localTeam}} - {{object.visitantTeam}}</title>
 	
 </head>
 <body>
 	{% if user.username %}	
-	<p>Aqui es troba tota l'informació que disposem sobre el partit {{local}} - {{visitant}}</p>
-	<p> Puntuació final: {{localpoints}} - {{visitantpoints}}</p>
+	<p>Aqui es troba tota l'informació que disposem sobre el partit {{object}}</p>
+	<p> Puntuació final: {{object.localScore}} - {{object.visitantScore}}</p>
 	</br>
 	<a href = /comments/{{id}}> Clica aqui si vols llegir tots els comentaris d'aquest partit </a>
 

@@ -1,17 +1,17 @@
 <html>
 <head>
-	<title>{{local}} - {{visitant}}</title>
+	<title>{{object.localTeam}} - {{object.visitantTeam}}</title>
 	
 </head>
 <body>
 	{% if user.username %}	
-	<p>Aqui es troba tota l'informació que disposem sobre el partit {{local}} - {{visitant}}</p>
-	<p> Puntuació final: {{localpoints}} - {{visitantpoints}}</p>
+	<p>Aqui es troba tota l'informació que disposem sobre el partit {{objectoi}}</p>
+	<p> Puntuació final: {{object.localScore}} - {{object.visitantScore}}</p>
 	</br>
 	<a href = /comments/{{id}}> Clica aqui si vols llegir tots els comentaris d'aquest partit </a>
 
 	</br></br>
-	<p> Vols crear un comentari? Si? Segur? Doncs clica <a href = /matches/{{id}}> aqui </a></p>
+	<p> Vols crear un comentari? Si? Segur? Doncs clica <a href = /matches/{{id}}/create> aqui </a></p>
 
 	<p> Si vols mes informació sobre els equips que el van jugar consulta la llista d'equips</p>
 	<a href = /matches/>Torna a la llista de partits </a> 

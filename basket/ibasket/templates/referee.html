@@ -1,13 +1,13 @@
 <html>
 <head>
-	<title>{{name}}</title>
+	<title>{{object.name}}</title>
 </head>
 <body>
 	{% if user.username %}
 	<h4> Aqui es troba tota l'informacio que dispossem sobre l'arbitre {{name}}</h4>
 	<p> Partits que ha arbitrat: </p>
 	<ul>
-	{% for match in matches %}
+	{% for match in object.matches.all %}
 	<li>
 	{{match}}
 	</li>

@@ -3,22 +3,26 @@
 	<title>{{name}}</title>
 </head>
 <body>
+	{% if user.username %}
 	<h4> Aqui es troba tota l'informacio que dispossem sobre l'equip {{name}}</h4>
 	<ul>
 	<li>
-	Nom del equip: {{name}}
+	Nom del equip: {{object.name}}
 	</li>
 	<li>
-	Entrenador: {{coach}}
+	Entrenador: {{object.coach}}
 	</li>
 	<li>
-	Ciutat de fundació: {{city}}
+	Ciutat de fundació: {{object.city}}
 	</li>
 	<li>
-	Any de fundació: {{year}}
+	Any de fundació: {{object.year}}
 	</li>
 	</ul>
 	</br></br>
 	<a href = /teams/>Torna a la llista d'equips </a> 
+	{% else %}
+	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
+	{% endif %}
 </body>
 </html>

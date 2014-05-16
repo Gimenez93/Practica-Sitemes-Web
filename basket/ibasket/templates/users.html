@@ -5,10 +5,10 @@
 <body>
 	{% if user.username %}
 	<h1>Llista de tots els usuaris</h1>
-	{% if users %}
+	{% if object_list %}
 	<p> Clica en un dels usuaris si vols mes informació sobre ell</p> 
 	<ul>
-	{% for usuari in users %}
+	{% for usuari in object_list %}
 	<li>
 	<a href = /users/{{usuari.id}}/>{{usuari.username}} </a> </br></br>
 	</li>

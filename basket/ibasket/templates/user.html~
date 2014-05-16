@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>{{ username }}'s Comments</title>
+</head>
+<body>
+	{% if user.username %}
+	<h1>Comentaris escrits per l'usuari {{ object.username }}</h1>
+	COMMENTS {{objects}}
+	{% if objects_list.comments %}
+	<ul>
+	{% for comment in object.comments.all %}
+	<li>
+
+	({{comment.match.localTeam.name}} - {{comment.match.visitantTeam.name}}) : {{comment.comment}}
+	</li>
+	{% endfor %}
+	</ul>
+	{% else %}
+	<p>No ha escrit comentaris.</p>
+	{% endif %}
+	<a href = /users/>Torna a la llista de usuaris </a> 
+	{% else %}
+	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
+	{% endif %}
+</body>
+</html>

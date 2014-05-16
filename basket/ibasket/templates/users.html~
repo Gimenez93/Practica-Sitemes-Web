@@ -10,7 +10,7 @@
 	<ul>
 	{% for usuari in users %}
 	<li>
-	<a href = /users/{{usuari.username}}/>{{usuari.username}} </a> </br></br>
+	<a href = /users/{{usuari.id}}/>{{usuari.username}} </a> </br></br>
 	</li>
 	{% endfor %}
 	</ul>

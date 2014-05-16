@@ -5,10 +5,10 @@
 <body>
 	{% if user.username %}
 	<h1>Llista de tots els equips</h1>
-	{% if teams %}
+	{% if object_list %}
 	<p> Clica en un dels equips si vols mes informació sobre ell</p> 
 	<ul>
-	{% for team in teams %}
+	{% for team in object_list %}
 	<li>
 	<a href = /teams/{{team.id}}/>{{team.name}} </a> </br></br>
 	</li>
