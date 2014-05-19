@@ -8,9 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core import serializers
 from ibasket.models import *
 from ibasket.forms import *
-import os
-from django.views.generic import CreateView, DetailView, ListView
-
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
 
 def mainpage(request):
 	return render_to_response(
@@ -22,60 +20,6 @@ def mainpage(request):
 			'user': request.user
 		})
 			
-
-
-
-def userpage(request,username):
-	try:
-		user = User.objects.get(id=username)
-	except:
-		raise Http404('User not found.')
-
-	if request.META["QUERY_STRING"] == "xml":
-		data = serializers.serialize("xml", User.objects.filter(id=username))
-		return HttpResponse(data, mimetype='application/xml')
-	if request.META["QUERY_STRING"] == "json":
-		data = serializers.serialize("json", User.objects.filter(id=username))
-		return HttpResponse(data, mimetype='application/json')
-
-	return render_to_response(
-		'userpage.html',
-		{
-			'username': user.username,
-			'comments': user.comment_set.all(),
-			'user': request.user,
-		})
-
-def users(request):
-	if request.META["QUERY_STRING"] == "xml":
-		data = serializers.serialize("xml", User.objects.all())
-		return HttpResponse(data, mimetype='application/xml')
-	if request.META["QUERY_STRING"] == "json":
-		data = serializers.serialize("json", User.objects.all())
-		return HttpResponse(data, mimetype='application/json')
-	return render_to_response(
-		'users.html',
-		{
-			'users': User.objects.all(),
-			'user': request.user,
-		})
-
-
-def comments(request, mat):
-	if request.META["QUERY_STRING"] == "xml":
-		data = serializers.serialize("xml", Comment.objects.all())
-		return HttpResponse(data, mimetype='application/xml')
-	if request.META["QUERY_STRING"] == "json":
-		data = serializers.serialize("json", Comment.objects.all())
-		return HttpResponse(data, mimetype='application/json')
-	return render_to_response(
-		'comments.html',
-		{
-			'comments' : Comment.objects.filter(match=mat),
-			'match' : Match.objects.get(id=mat),
-			'user': request.user,
-			'id': mat
-		})
 
 
 def register(request):
@@ -90,50 +34,6 @@ def register(request):
 		'form': form,
 		})
 
-def create(request,username):
-	if request.method == 'POST':
-		form = Comment(comment=request.POST['comment'], user=request.user, match=Match.objects.get(id=username))
-		new_prova = form.save()
-		return render(request, "thanks.html", {
-		'id' : username,
-		})
-	else:
-		f = open(os.path.join(os.path.dirname(__file__),'../basket/static/teams.json'),"r")
-		json = f.read()
-		form = ProvaForm(request.POST)
-	return render(request, "create.html", {
-		'form': form,
-		'id' : username,
-		"file": json
-		})
-
-def edit(request,match,idComment):
-	if request.method == 'POST':
-		form = Comment.objects.get(id=idComment)
-		form.comment = request.POST['comment']
-		new_prova = form.save()
-		return render(request, "thanks.html", {
-		'id' : match,
-		})
-	else:
-		comment = Comment.objects.get(id=idComment)
-		form = ProvaForm(request.POST,comment)
-	return render(request, "edit.html", {
-		'form': form,
-		'idComment' : idComment,
-		'idMatch' : match,
-		'comment' : comment,
-		})
-
-def delete(request,match,idComment):
-	form = Comment.objects.get(id=idComment)
-	form.delete()
-	return render(request, "thanks.html", {
-	'id' : match,
-	})
-
-
-
 class MatchList(ListView):
 	model = Match
 	template_name = "matches.html"
@@ -142,7 +42,6 @@ class MatchList(ListView):
 class MatchDetail(DetailView):
 	model = Match
 	template_name = "match.html"
-	queryset = Match.objects.all()
 
 class TeamList(ListView):
 	model = Team
@@ -152,7 +51,6 @@ class TeamList(ListView):
 class TeamDetail(DetailView):
 	model = Team
 	template_name = "team.html"
-	queryset = Team.objects.all()
 
 class PlayerList(ListView):
 	model = Player
@@ -162,7 +60,6 @@ class PlayerList(ListView):
 class PlayerDetail(DetailView):
 	model = Player
 	template_name = "player.html"
-	queryset = Player.objects.all()
 
 class RefereeList(ListView):
 	model = Referee
@@ -172,7 +69,6 @@ class RefereeList(ListView):
 class RefereeDetail(DetailView):
 	model = Referee
 	template_name = "referee.html"
-	queryset = Referee.objects.all()
 
 class UserList(ListView):
 	model = User
@@ -182,7 +78,26 @@ class UserList(ListView):
 class UserDetail(DetailView):
 	model = User
 	template_name = "user.html"
-	queryset = User.objects.all() and Comment.objects.all()
 
 
+class CreateComment(CreateView):
+	model = Comment
+	template_name = "form.html"
+	form_class = CommentForm
+	success_url = "/matches/"
 
+	def form_valid(self, form):
+		form.instance.user = self.request.user
+		form.instance.match = Match.objects.get(id=self.kwargs['pk'])
+		return super(CreateComment, self).form_valid(form)
+
+class UpdateComment(UpdateView):
+	model = Comment
+	form_class = CommentForm
+	template_name = "form.html"
+	success_url = "/matches/"
+	
+class DeleteComment(DeleteView):
+	model = Comment
+	success_url = "/matches/"
+	template_name = "form.html"

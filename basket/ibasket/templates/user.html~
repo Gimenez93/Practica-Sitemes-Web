@@ -1,14 +1,13 @@
 <html>
 <head>
-	<title>{{ username }}'s Comments</title>
+	<title>{{ object.username }}'s Comments</title>
 </head>
 <body>
-	{% if user.username %}
+	{% if object.username %}
 	<h1>Comentaris escrits per l'usuari {{ object.username }}</h1>
-	COMMENTS {{objects}}
-	{% if objects_list.comments %}
+	{% if object.comment_set.all() %}
 	<ul>
-	{% for comment in object.comments.all %}
+	{% for comment in object.comment_set.all %}
 	<li>
 
 	({{comment.match.localTeam.name}} - {{comment.match.visitantTeam.name}}) : {{comment.comment}}

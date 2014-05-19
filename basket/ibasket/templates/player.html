@@ -1,26 +1,29 @@
-<html>
-<head>
-	<title>{{object.name}}</title>
-</head>
-<body>
-	{% if user.username %}
-	<p> Aqui es troba tota l'informacio que dispossem sobre el jugador {{name}}</p>
+{% extends "bases/base_detail.html" %}
+
+{%block elementTitle %} 
+
+	jugador {{object.name}}
+
+{% endblock %}
+
+{% block subTitle %}
+
+	{{block.super}}
+
+{% endblock %}
+
+{% block data %}
+
 	<ul>
-	<li>
-	Edat: {{object.age}}
-	</li>
-	<li>
-	Posició: {{object.role}}
-	</li>
-	<li>
-	Equip en el que juga actualment: {{object.team}}
-	</li>
+		<li> Edat: {{object.age}} </li>
+		<li> Posició: {{object.role}} </li>
+		<li> Equip en el que juga actualment: {{object.team}} </li>
 	</ul>
-	</br></br>
-	<p> Si vols mes informació sobre l'equip on juga consulta la llista d'equips</p>
-	<a href = /players/>Torna a la llista de jugadors </a> 
-	{% else %}
-	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
-	{% endif %}
-</body>
-</html>
+
+{% endblock %}
+
+
+
+{% block back %}
+	<a href =/players>Torna enrere</a>
+{% endblock %} 

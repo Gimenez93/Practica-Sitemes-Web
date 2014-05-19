@@ -1,0 +1,11 @@
+{% extends "bases/base.html" %}
+
+{% block content %}
+	<p>Aqui es troba tota l'informació que disposem sobre el {% block elementTitle %}{% endblock %}</p>
+	{% block subTitle %} 
+		{% block data %}
+		{% endblock %}
+	{% endblock %}
+	</br></br>
+{% endblock %}
+

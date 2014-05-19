@@ -1,0 +1,30 @@
+
+<html> 
+<head>
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes
+	/smoothness/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+	<title> Create comment </title>
+</head>
+<body>
+
+
+	<h1> Create a comment </h1>
+
+	<form method="post" enctype="multipart/form-data" action="">
+		{% csrf_token %}
+		<table>
+			{{form.as_table}}
+		</table>
+		<input id = "pepito" type="submit" value="Enviar"/>
+
+		<input id = "manolito" type="text" value="Enviar"/>
+	</form>
+
+
+	<p> M'he equivocat, deixa'm tornar al <a href =/> menu principal </a> o als comentaris de <a href =/matches/{{id}}> aquest partit</a> </p>
+</body>
+</html>

@@ -4,14 +4,13 @@
 </head>
 <body>
 	{% if user.username %}
-	<h1>Tots els commentaris del partit {{match}}</h1>
-	{% if comments %}
+	<h1>Tots els commentaris del partit {{object.match}}</h1>
+	{% if object_list %}
+	LALALALA
 	<ul>
-	{% for comment in comments %}
+	{% for comment in object_list.comment_all %}
 	<li>
 	{{comment}} - per {{comment.user}} 
-	USUARI user
-	COMENTARI USUARI comment.user
 	{% if user == comment.user %}
 	<a href=/matches/{{id}}/{{comment.pk}}/edit>edit</a> 
 	
@@ -30,3 +29,5 @@
 	{% endif %}
 </body>
 </html>
+
+902880050

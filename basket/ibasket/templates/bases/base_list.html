@@ -1,0 +1,21 @@
+{% extends "bases/base.html" %}
+
+{% block content %}
+	{% if object_list %}
+	<p> Clica en un dels {% block elementTitle %}{% endblock %} si vols mes informació sobre ell</p> 
+	<ul>
+	{% for object in object_list %}
+	<li>
+	{% block url %} {% endblock %}
+	</br></br>
+	</li>
+	{% endfor %}
+	</ul>
+	{% else %}
+	<p>No hi han {% block elementFooter %}{% endblock %} al sistema.</p>
+	{% endif %}
+{% endblock %}
+
+{% block back %}
+	<a href =/>Torna enrere</a>
+{% endblock %} 

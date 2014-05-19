@@ -1,23 +1,31 @@
-<html>
-<head>
-	<title>{{object.name}}</title>
-</head>
-<body>
-	{% if user.username %}
-	<h4> Aqui es troba tota l'informacio que dispossem sobre l'arbitre {{name}}</h4>
+{% extends "bases/base_detail.html" %}
+
+{%block elementTitle %} 
+
+	arbitre {{object.name}}
+
+{% endblock %}
+
+{% block subTitle %}
 	<p> Partits que ha arbitrat: </p>
+
+	{{block.super}}
+
+{% endblock %}
+
+{% block data %}
+
 	<ul>
-	{% for match in object.matches.all %}
-	<li>
-	{{match}}
-	</li>
-	{% endfor %}
+		{% for match in object.matches.all %}
+			<li>
+			{{match}}
+			</li>
+		{% endfor %}
 	</ul>
-	<p> Si vols mes informació sobre algun dels partits consulta la llista de partits</p>
-	</br></br>
-	<a href = /referees/>Torna a la llista de arbitres </a> 
-	{% else %}
-	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
-	{% endif %}
-</body>
-</html>
+
+{% endblock %}
+
+
+{% block back %}
+	<a href =/referees>Torna enrere</a>
+{% endblock %} 

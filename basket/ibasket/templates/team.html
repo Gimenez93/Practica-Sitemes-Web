@@ -1,28 +1,37 @@
-<html>
-<head>
-	<title>{{name}}</title>
-</head>
-<body>
-	{% if user.username %}
-	<h4> Aqui es troba tota l'informacio que dispossem sobre l'equip {{name}}</h4>
+{% extends "bases/base_detail.html" %}
+
+{%block elementTitle %} 
+
+	l'equip {{object.name}}
+
+{% endblock %}
+
+{% block subTitle %}
+
+	{{block.super}}
+
+{% endblock %}
+
+{% block data %}
+
 	<ul>
-	<li>
-	Nom del equip: {{object.name}}
-	</li>
-	<li>
-	Entrenador: {{object.coach}}
-	</li>
-	<li>
-	Ciutat de fundació: {{object.city}}
-	</li>
-	<li>
-	Any de fundació: {{object.year_fundation}}
-	</li>
+		<li>
+		Nom del equip: {{object.name}}
+		</li>
+		<li>
+		Entrenador: {{object.coach}}
+		</li>
+		<li>
+		Ciutat de fundació: {{object.city}}
+		</li>
+		<li>
+		Any de fundació: {{object.year_fundation}}
+		</li>
 	</ul>
-	</br></br>
-	<a href = /teams/>Torna a la llista d'equips </a> 
-	{% else %}
-	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
-	{% endif %}
-</body>
-</html>
+
+{% endblock %}
+
+
+{% block back %}
+	<a href =/teams>Torna enrere</a>
+{% endblock %} 

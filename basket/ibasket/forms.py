@@ -1,13 +1,9 @@
 from django.forms import ModelForm
-from ibasket.models import Comment
-from ibasket.models import Prova
+from ibasket.models import *
 
 
 class CommentForm(ModelForm):
 	class Meta:
 		model = Comment
+		exclude = ('user','match')
 
-class ProvaForm(ModelForm):
-	class Meta:
-		model = Prova
-		exclude = ['user' , 'match']

@@ -1,14 +1,23 @@
-<html>
-<head>
-	<title>{{ username }}'s Comments</title>
-</head>
-<body>
-	{% if user.username %}
-	<h1>Comentaris escrits per l'usuari {{ object.username }}</h1>
-	COMMENTS {{object}}
-	{% if objects_list.comments %}
+{% extends "bases/base_detail.html" %}
+
+{%block elementTitle %} 
+	
+	usuari {{user.username}}
+
+{% endblock %}
+
+{% block subTitle %}
+	<p>Comentaris escrits per l'usuari {{ object.username }}</p>
+
+	{{block.super}}
+
+{% endblock %}
+
+{% block data %}
+
+{% if object.comment_set.all %}
 	<ul>
-	{% for comment in object.comments.all %}
+	{% for comment in object.comment_set.all %}
 	<li>
 
 	({{comment.match.localTeam.name}} - {{comment.match.visitantTeam.name}}) : {{comment.comment}}
@@ -18,9 +27,10 @@
 	{% else %}
 	<p>No ha escrit comentaris.</p>
 	{% endif %}
-	<a href = /users/>Torna a la llista de usuaris </a> 
-	{% else %}
-	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
-	{% endif %}
-</body>
-</html>
+
+{% endblock %}
+
+
+{% block back %}
+	<a href =/users>Torna enrere</a>
+{% endblock %} 

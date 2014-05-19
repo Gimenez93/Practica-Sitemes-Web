@@ -1,26 +1,19 @@
-<html>
-<head>
-	<title>Teams</title>
-</head>
-<body>
-	{% if user.username %}
-	<h1>Llista de tots els equips</h1>
-	{% if object_list %}
-	<p> Clica en un dels equips si vols mes informació sobre ell</p> 
-	<ul>
-	{% for team in object_list %}
-	<li>
-	<a href = /teams/{{team.id}}/>{{team.name}} </a> </br></br>
-	</li>
-	{% endfor %}
-	</ul>
-	{% else %}
-	<p>No hi han equips al sistema.</p>
-	{% endif %}
-	</br></br>
-	<a href = />Torna al menu principal </a> 
-	{% else %}
-	<p> Ep! Hem detectat que no estas loguejat, si vols accedir a aquesta info inicia sessio per <a href = /login> aquí </a> o be <a href = /register> registra't </a></p>
-	{% endif %}
-</body>
-</html>
+{% extends "bases/base_list.html" %}
+
+{%block elementTitle %} 
+
+	equips 
+
+{% endblock %}
+
+{%block elementFooter %} 
+
+	equips 
+
+{% endblock %}
+
+{%block url %} 
+
+	<a href = /teams/{{object.id}}/>{{object.name}} </a>
+
+{% endblock %}
