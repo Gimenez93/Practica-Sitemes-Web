@@ -12,8 +12,32 @@
 
 {% endblock %}
 
+{% block creation %}
+
+
+	<p> Vols crear un equip? Si? Segur? Doncs clica 
+		<a href = /teams/create> aqui </a>
+	</p>
+
+
+{% endblock %}
+
+
+
 {%block url %} 
 
 	<a href = /teams/{{object.id}}/>{{object.name}} </a>
+
+{% endblock %}
+
+{% block edit %}
+
+		<a href=/teams/{{object.id}}/edit>edit</a> 
+
+{% endblock %}
+
+{% block delete %}
+
+	<a href=/teams/{{object.id}}/delete> delete</a></li>
 
 {% endblock %}

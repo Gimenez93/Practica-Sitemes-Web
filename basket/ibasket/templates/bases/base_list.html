@@ -7,6 +7,11 @@
 	{% for object in object_list %}
 	<li>
 	{% block url %} {% endblock %}
+	{% if user.is_staff %}
+		{% block edit %}{% endblock %}
+	
+		{% block delete %}{% endblock %}
+	{% endif %}
 	</br></br>
 	</li>
 	{% endfor %}

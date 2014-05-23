@@ -1,5 +1,9 @@
+{% load staticfiles %}
 <html>
 <head>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<title>Basket App</title>
 </head>
 <body>
@@ -7,7 +11,7 @@
 		{% block header %}
 			{% if user.username %}
 				<p> User {{user.username}} (<a href="/logout/?next=/">logout</a>)
-				<a href="/">Home</a>
+				<a href="/">Inici</a>
 				{% block back %}{% endblock %}
 				</p>
 			{% else %}

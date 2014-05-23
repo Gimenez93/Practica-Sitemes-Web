@@ -18,4 +18,22 @@
 
 {% endblock %}
 
+{% block creation %}
 
+	<p> Vols crear un arbitre? Si? Segur? Doncs clica 
+		<a href = /referees/create> aqui </a>
+	</p>
+
+{% endblock %}
+
+{% block edit %}
+
+		<a href=/referees/{{object.id}}/edit>edit</a> 
+
+{% endblock %}
+
+{% block delete %}
+
+	<a href=/referees/{{object.id}}/delete> delete</a></li>
+
+{% endblock %}

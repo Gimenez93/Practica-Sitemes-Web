@@ -1,0 +1,13 @@
+{% extends "bases/base.html" %}
+
+
+{% block creation %}
+
+
+<form method="post" enctype="multipart/form-data" action="">
+	{% csrf_token %}
+	<p> Estas segur que vols esborrar-ho?</p>
+	<input type = "submit" value="Si, segur"/>
+</form>
+
+{% endblock %}

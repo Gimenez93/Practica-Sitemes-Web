@@ -17,3 +17,24 @@
 	<a href = /matches/{{object.id}}/>{{object.localTeam}} - {{object.visitantTeam}} </a>
 
 {% endblock %}
+
+
+{% block creation %}
+
+	<p> Vols crear un partit? Si? Segur? Doncs clica 
+		<a href = /matches/create> aqui </a>
+	</p>
+
+{% endblock %}
+
+{% block edit %}
+
+		<a href=/matches/{{object.id}}/edit>edit</a> 
+
+{% endblock %}
+
+{% block delete %}
+
+	<a href=/matches/{{object.id}}/delete> delete</a></li>
+
+{% endblock %}

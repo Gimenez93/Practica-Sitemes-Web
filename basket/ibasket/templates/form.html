@@ -1,72 +1,17 @@
-
-{% load staticfiles %}
-<html> 
-<head>
-
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes
-	/smoothness/jquery-ui.css" />
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
-	<title> Create comment </title>
-</head>
-<body>
-	<script>
-        $( document ).ready(function() {
-            $.getJSON("{% static "teams.json" %}", {}, function (teams) {
-                $("#manolito").autocomplete({
-                    source: teams
-                });
-            });
-
-            $("#pepito").autocomplete({
-                source: function( request, response ) {
-                    $.ajax({
-                        url: "http://api.geonames.org/searchJSON",
-                        dataType: "jsonp",
-                        data: {
-                            featureClass: "P",
-                            maxRows: 10,
-                            name_startsWith: request.term,
-                            username: "demo"
-                        },
-                        success: function( data ) {
-                            response( $.map( data.geonames, function( item ) {
-                                return {
-                                    label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-                                    value: item.name,
-                                    stateOrProvince: item.adminName1,
-                                    countryName: item.countryName
-                                }
-                            }));
-                        }
-                    });
-                },
-                minLength: 2,
-                select: function( event, ui ) {
-                    if (ui.item) {
-                        $("#pepito").val(ui.item.stateOrProvince);
-                    }
-                }
-            });
-        });
-
-	</script>
+{% extends "bases/base.html" %}
 
 
-	<h1> Create a comment </h1>
+{% block creation %}
 
-	<form method="post" enctype="multipart/form-data" action="">
-		{% csrf_token %}
-		<table>
-			{{form.as_table}}
-		</table>
-		<input id = "pepito" type="text" value="api"/>
+<script type="text/javascript" src= '{{STATIC_URL}}autocomplete.js'></script>
 
-		<input id = "manolito" type="text" value="fitxer"/>
-	</form>
+<form method="post" enctype="multipart/form-data" action="">
+	{% csrf_token %}
+	<table>
+		{{form.as_table}}
+	</table>
+	<input type = "submit" value="Enviar"/>
+</form>
 
+{% endblock %}
 
-	<p> M'he equivocat, deixa'm tornar al <a href =/> menu principal </a> o als comentaris de <a href =/matches/{{id}}> aquest partit</a> </p>
-</body>
-</html>
