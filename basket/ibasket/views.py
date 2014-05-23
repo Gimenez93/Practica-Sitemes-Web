@@ -150,9 +150,10 @@ class DeleteTeam(LoginRequiredMixin, CheckIsStaffMixin, DeleteView):
 
 class CreatePlayer(LoginRequiredMixin, CreateView):
 	model = Player
-	template_name = "form.html"
+	template_name = "create_player.html"
 	form_class = PlayerForm
 	success_url = "/players/"
+
 
 class UpdatePlayer(LoginRequiredMixin, CheckIsStaffMixin, UpdateView):
 	model = Player

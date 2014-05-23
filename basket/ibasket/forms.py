@@ -16,6 +16,7 @@ class TeamForm(ModelForm):
 class PlayerForm(ModelForm):
 	class Meta:
 		model = Player
+		exclude = ('role', 'birth_place')
 
 class RefereeForm(ModelForm):
 	class Meta:

@@ -15,7 +15,8 @@ class Player(models.Model):
 	name = models.TextField(max_length = 100)
 	age = models.IntegerField(max_length = 2)
 	role = models.TextField(max_length = 100)
-	team = models.ForeignKey(Team)
+	team = models.ForeignKey(Team)	
+	birth_place = models.TextField(max_length = 100)
 	def __unicode__ (self):
 		return self.name
 
