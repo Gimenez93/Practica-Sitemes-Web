@@ -28,6 +28,16 @@ class Match(models.Model):
 	def __unicode__ (self):
 		return self.localTeam.name + " - " + self.visitantTeam.name
 
+	def averageRating(self):
+		ratingSum = 0.0
+		for comment in self.comment_set.all():
+			ratingSum = ratingSum + comment.rating
+		reviewCount = self.comment_set.count()
+		return ratingSum/reviewCount
+
+
+
+
 class Referee(models.Model):
 	name = models.TextField(max_length = 100)
 	matches = models.ManyToManyField(Match)
@@ -35,6 +45,8 @@ class Referee(models.Model):
 		return self.name
 
 class Comment(models.Model):
+	RATING_CHOICES = ((1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'))
+	rating = models.PositiveSmallIntegerField('Ratings(stars)', blank=False, default=3, choices=RATING_CHOICES)
 	user = models.ForeignKey(User)
 	comment = models.TextField(max_length = 140)
 	match = models.ForeignKey(Match)

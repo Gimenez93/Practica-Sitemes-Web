@@ -1,5 +1,11 @@
 {% extends "bases/base_detail.html" %}
 
+{% block title %}<title>{{object.localTeam}} - {{object.visitantTeam}}</title>
+
+{% endblock %}
+
+
+
 {%block elementTitle %} 
 
 	partit {{object}}
@@ -15,17 +21,64 @@
 
 {% block data %}
 
-	<ul>
+	{% if object.comment_set.all %}
+		<p> Aqui es troben tots els comentaris que es troben sobre aquest partit</p>
+
+
+	<span vocab= "http://schema.org/" typeof="Review">
+		<span rel = "aggregateRating">
+			<p typeof = "AggregateRating">
+				Average rating
+				<span property = "ratingValue">{{object.averageRating|stringformat:".1f"}}</span>
+				{% with object.comment_set.all|length as reviewCount %}
+					from <span property = "reviewCount">{{reviewCount}}</span>
+					review{{reviewCount|pluralize}}
+				{% endwith %}
+			</p>
+		</span>
+
+
+
+
+
+	<ul rel = "review">
 	{% for comment in object.comment_set.all %}
-		<li>{{comment.comment}} - {{comment.user}}
-		{% if user == comment.user %}
-		<a href=/matches/{{comment.match.id}}/{{comment.pk}}/edit>edit</a> 
+		<li typeof = "Review">
+
+			<p rel = "reviewRating" typeof = "Rating">			
+				 
+
+				<span property = "worstRating" content ="0"></span>
+				(Valoració: <span property = "ratingValue">{{comment.rating}}</span>) 
+
+				{% with RATING_CHOICES|last as best %}
+					<span property = "bestRating" content = "5"> </span>
+				{% endwith %}
+			</p>
+			<p>
+
+				<span property = "description">{{comment.comment}}</span>
+				<span property = "author">{{comment.user}}</span> 
+
+			
+			{% if user == comment.user %}
+				<a href=/matches/{{comment.match.id}}/{{comment.pk}}/edit>edit</a> 
 	
-		<a href=/matches/{{comment.match.id}}/{{comment.pk}}/delete> delete</a></li>
-		{% endif %}
+				<a href=/matches/{{comment.match.id}}/{{comment.pk}}/delete> delete</a>
+
+			{% endif %}
+
+			</p>
+
+
+
+		</li>
 	{% endfor %}
 	</ul>
-
+	</span>
+	{% else %}
+		<p> No hi han comentaris sobre aquest partit</p>
+	{% endif %}
 {% endblock %}
 
 {% block creation %}
